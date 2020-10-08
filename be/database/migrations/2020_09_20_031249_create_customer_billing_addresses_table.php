@@ -15,6 +15,12 @@ class CreateCustomerBillingAddressesTable extends Migration
     {
         Schema::create('customer_billing_addresses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('profile_id')
+                ->constrained('profiles')
+                ->onDelete('cascade');
+            $table->string('address_1');
+            $table->string('address_2');
+            $table->string('country');
             $table->timestamps();
         });
     }

@@ -101,28 +101,74 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                // 'example_query' => ExampleQuery::class,
+                'customers' => 'App\GraphQL\Queries\CustomersQuery',
+                'roles'     => 'App\GraphQL\Queries\RolesQuery',
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
-                'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
+                //'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
             ],
             'middleware' => [],
             'method' => ['get', 'post'],
         ],
-    ],
-
-    // The types available in the application. You can then access it from the
-    // facade like this: GraphQL::type('user')
-    //
-    // Example:
-    //
-    // 'types' => [
-    //     'user' => 'App\GraphQL\Type\UserType'
-    // ]
-    //
+        'login' => [
+            'query' => [
+                App\GraphQL\Queries\LoginQuery::class
+            ],
+            'mutation' => [
+                // 'example_mutation'  => ExampleMutation::class,
+                //'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
+            ],
+            'middleware' => [],
+            'method' => ['post'],
+        ],
+        'register' => [
+            'query' => [],
+            'mutation' => [
+                App\GraphQL\Mutations\RegisterUserMutation::class
+            ],
+            'middleware' => [],
+            'method' => ['post'],
+        ],
+        'me'    => [
+            'query' => [
+                App\GraphQL\Queries\MeQuery::class
+            ],
+            'mutation' => [
+                // 'example_mutation'  => ExampleMutation::class,
+            ],
+            'middleware' => ['auth:api'],
+            'method' => ['get', 'post'],
+        ],
+        'user'  => [
+            'query' => [
+                App\GraphQL\Queries\UserQuery::class
+            ],
+            'mutation' => [
+                // 'example_mutation'  => ExampleMutation::class,
+                //'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
+            ],
+            'middleware' => [],
+            'method' => ['get', 'post'],
+        ],
+        'users' => [
+            'query' => [
+                App\GraphQL\Queries\UsersQuery::class
+            ],
+            'mutation' => [
+                // 'example_mutation'  => ExampleMutation::class,
+                //'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
+            ],
+            'middleware' => [],
+            'method' => ['get'],
+        ]
+    ], 
     'types' => [
-        // 'example'           => ExampleType::class,
+        'AccessToken'   => 'App\GraphQL\Types\AccessTokenType',
+        'Customer'      => 'App\GraphQL\Types\CustomerType',
+        'Profile'       => 'App\GraphQl\Types\ProfileType',
+        'Role'          => 'App\GraphQl\Types\RoleType',
+        'User'          => 'App\GraphQl\Types\UserType',
         // 'relation_example'  => ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
     ],
