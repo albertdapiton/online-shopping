@@ -12,6 +12,11 @@ final class RegisterUserMutation extends Mutation
         'name' => 'Register'
     ];
 
+    public function type(): Type
+    {
+        return Type::string();
+    }
+
     public function args() : array
     {
         return [
@@ -31,6 +36,10 @@ final class RegisterUserMutation extends Mutation
                 'type'          => Type::nonNull(Type::string()),
                 'description'   => 'The password of the user',
             ],
+            'role'      => [
+                'type'          => Type::nonNull(Type::string()),
+                'description'   => 'The role of the user',
+            ]
         ];
     }
 
@@ -41,11 +50,12 @@ final class RegisterUserMutation extends Mutation
             'last_name'     => ['required'],
             'email'         => ['required', 'email_address', 'unique:App\Models\User'],
             'password'      => ['required', 'min:6'],
+            'role'          => ['required'],
         ];
     }
 
     public function resolve($root, $args)
     {
-
+        return app('RegisterService')->register($args);
     }
 }

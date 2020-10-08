@@ -1,0 +1,43 @@
+
+Login user
+URL: URL: /graphql/login?query={query}&variables={"email":{email}, "password": {password}}
+query LoginUser($email: String, $password: String) {
+    login(email: $email, password: $password) {
+        token
+        expires_at
+    }
+}
+
+Retrieve a list of users by role
+URL: URL: /graphql/users?query={query}&variables={variables}
+query FetchUsers ($roles: String) {
+    users(roles: $roles) {
+        id
+        email
+    		profile {
+      		id
+      		first_name
+      		last_name
+    		}
+    		roles {
+          name
+        }
+    }
+}
+
+Retrieve a list of user by id
+URL: /graphql/user?query={query}&variables={variables}
+query FetchUser ($id: Int) {
+    user(id: $id) {
+        id
+        email
+    		profile {
+      		id
+      		first_name
+      		last_name
+    		}
+    		roles {
+          name
+        }
+    }
+}
