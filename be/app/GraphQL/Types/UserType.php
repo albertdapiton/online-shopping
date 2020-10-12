@@ -24,8 +24,16 @@ class UserType extends GraphQLType
                 'description'   => 'The id of the user',
             ],
             'email'         => [
-                'type'      => Type::string(),
+                'type'          => Type::string(),
                 'description'   => 'The email of the user',
+            ],
+            'verfiy'        => [
+                'type'          => Type::string(),
+                'description'   => 'The date account verify by the user',
+                'alias'         => 'email_verified_at',
+                'resolve'       => function($root, $args) {
+                    return strtotime($root->email_verified_at);
+                }
             ],
             'profile'       => [
                 'type'          => GraphQL::type('Profile'), 

@@ -161,7 +161,14 @@ return [
             ],
             'middleware' => [],
             'method' => ['get'],
-        ]
+        ],
+        'verify' => [
+            'mutation' => [
+                'verifyUserEmail' => App\GraphQL\Mutations\VerifyMutation::class
+            ],
+            'middleware' => [],
+            'method' => ['get'],
+        ],
     ], 
     'types' => [
         'AccessToken'   => 'App\GraphQL\Types\AccessTokenType',

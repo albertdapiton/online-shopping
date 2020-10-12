@@ -2,7 +2,6 @@
 
 namespace App\GraphQL\Queries;
 
-use App\Models\User;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
@@ -32,6 +31,6 @@ final class UserQuery extends Query
 
     public function resolve($root, $args)
     {
-        return User::findOrFail($args['id']);
+        return app('UserService')->findUser($args);
     }
 }

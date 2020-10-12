@@ -2,8 +2,6 @@
 
 namespace App\GraphQL\Queries;
 
-use App\Models\User;
-use Auth;
 use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -43,14 +41,6 @@ final class UsersQuery extends Query
 
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        $users = User::orderBy('users.created_at', 'desc')->with('profile');
-        
-        if (isset($args['roles']) && ! is_null($args['roles'])) {
-            $users = $users->whereHas('roles', function($query) use ($args) {
-                $query->where('name', $args['roles']);
-            });
-        }
-        
-        return $users->get();
+        return app('UserService')->searchByUserRole($args);
     }
 }
