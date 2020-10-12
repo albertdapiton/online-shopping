@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\VerifyUserEmailGraphQL;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -37,6 +38,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Send verification to the user email
+     * 
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyUserEmailGraphQL);
+    }
 
     public function getAccessTokenAttribute()
     {

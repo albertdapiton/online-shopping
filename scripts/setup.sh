@@ -6,7 +6,7 @@ read -p "Are you sure? " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then 
-  cd ../docker
+  cd docker
 
   docker-compose stop
   #We're expecting no containers are running. So use sleep instead of docker-compose restart.
