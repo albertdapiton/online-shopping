@@ -11,7 +11,7 @@ then
   docker-compose stop
   #We're expecting no containers are running. So use sleep instead of docker-compose restart.
   sleep 10
-  docker-compose up -d nginx mariadb redis laravel-horizon
+  docker-compose up -d nginx mariadb redis
 
   laravel_dir="cd be"
   artisan="${laravel_dir} && php artisan"
