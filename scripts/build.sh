@@ -2,4 +2,4 @@
 # Build docker container
 
 cd docker
-docker-compose up -d --build nginx mariadb redis laravel-horizon
+docker-compose up -d --build nginx mariadb redis
