@@ -5,11 +5,11 @@ import Main from './Router';
 
 class Index extends Component {
     render() {
-      return (
-        <BrowserRouter>
-          <Route component={Main} />
-        </BrowserRouter>
-      );
+        return (
+            <BrowserRouter>
+                <Route component={Main} />
+            </BrowserRouter>
+        )
     }
 }
 

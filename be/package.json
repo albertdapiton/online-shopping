@@ -18,14 +18,15 @@
         "laravel-mix": "^5.0.9",
         "lodash": "^4.17.19",
         "popper.js": "^1.12",
-        "react": "^16.2.0",
+        "react": "^16.14.0",
         "react-dom": "^16.2.0",
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
-        "react-flash-message": "^1.0.6",
+        "npm-check": "^5.9.2",
+        "react-flash-message": "^1.0.5",
         "react-router-dom": "^5.2.0"
     }
 }
