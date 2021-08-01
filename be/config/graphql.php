@@ -101,8 +101,9 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'customers' => 'App\GraphQL\Queries\CustomersQuery',
-                'roles'     => 'App\GraphQL\Queries\RolesQuery',
+                'customers' => App\GraphQL\Queries\CustomersQuery::class,
+                'roles'     => App\GraphQL\Queries\RolesQuery::class,
+                'users'     => App\GraphQL\Queries\UsersQuery::class,
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
@@ -117,7 +118,7 @@ return [
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
-                //'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
+                'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
             ],
             'middleware' => [],
             'method' => ['post'],
@@ -159,6 +160,9 @@ return [
                 // 'example_mutation'  => ExampleMutation::class,
                 //'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
             ],
+            'types' => [
+                'Useralias' => App\GraphQL\Types\UserType::class,
+            ],
             'middleware' => [],
             'method' => ['get'],
         ],
@@ -171,11 +175,11 @@ return [
         ],
     ], 
     'types' => [
-        'AccessToken'   => 'App\GraphQL\Types\AccessTokenType',
-        'Customer'      => 'App\GraphQL\Types\CustomerType',
-        'Profile'       => 'App\GraphQl\Types\ProfileType',
-        'Role'          => 'App\GraphQl\Types\RoleType',
-        'User'          => 'App\GraphQl\Types\UserType',
+        'AccessToken'   => App\GraphQL\Types\AccessTokenType::class,
+        'Customer'      => App\GraphQL\Types\CustomerType::class,
+        //'Profile'       => App\GraphQl\Types\ProfileType::class,
+        'Role'          => App\GraphQL\Types\RoleType::class,
+        //'User'          => App\GraphQl\Types\UserType::class,
         // 'relation_example'  => ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
     ],

@@ -15,7 +15,7 @@ final class UserQuery extends Query
 
     public function type() : Type
     {
-        return GraphQL::type('User');
+        //return GraphQL::type('User');
     }
 
     public function args() : array

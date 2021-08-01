@@ -36,7 +36,7 @@ class ProfileType extends GraphQLType
             'country' => [
                 'type'          => Type::string(),
                 'description'   => 'The country of the user',
-            ],
+            ]
         ];
     }
 }

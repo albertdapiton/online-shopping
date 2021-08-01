@@ -16,6 +16,8 @@ then
   laravel_dir="cd be"
   artisan="${laravel_dir} && php artisan"
 
+  docker-compose exec workspace bash -c "${laravel_dir} && cp .env.example .env"
+
   docker-compose exec workspace bash -c "${laravel_dir} && composer install --optimize-autoloader"
 
   docker-compose exec workspace bash -c "${artisan} key:generate"
