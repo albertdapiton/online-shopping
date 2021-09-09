@@ -13,7 +13,7 @@ final class RoleService extends BaseService
         $this->model = Role::class;
     }
 
-    public function checkRoleExists(String $role) : boolean
+    public function checkRoleExists(String $role) : bool
     {
         return $this->model::where('name', $role)->first() ? true : false;
     }

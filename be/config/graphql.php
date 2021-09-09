@@ -101,27 +101,29 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'customers' => App\GraphQL\Queries\CustomersQuery::class,
                 'roles'     => App\GraphQL\Queries\RolesQuery::class,
-                'users'     => App\GraphQL\Queries\UsersQuery::class,
+                //'users'     => App\GraphQL\Queries\UsersQuery::class,
             ],
             'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
-                //'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
+                
             ],
             'middleware' => [],
             'method' => ['get', 'post'],
         ],
-        'login' => [
+        'billings'  => [
             'query' => [
-                App\GraphQL\Queries\LoginQuery::class
+                App\GraphQL\Queries\BillingsQuery::class,
             ],
+            'middleware' => ['auth:api'],
+            'method' => ['get'],
+        ],
+        'checkout'  => [
+            'query' => [],
             'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
-                'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
+                'orderItems' => App\GraphQL\Mutations\CheckoutMutation::class,
             ],
             'middleware' => [],
-            'method' => ['post'],
+            'method' => ['get', 'post'],
         ],
         'register' => [
             'query' => [],
@@ -133,38 +135,106 @@ return [
         ],
         'me'    => [
             'query' => [
-                App\GraphQL\Queries\MeQuery::class
+                //App\GraphQL\Queries\MeQuery::class
             ],
             'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
+                'billing' => App\GraphQL\Mutations\BillingMutation::class,
+                'profile'   => App\GraphQL\Mutations\UserMutation::class,
+                'shipping' => App\GraphQL\Mutations\ShippingMutation::class,
             ],
             'middleware' => ['auth:api'],
             'method' => ['get', 'post'],
+        ],
+        'order' => [
+            'query' => [
+                App\GraphQL\Queries\OrderQuery::class
+            ],
+            'mutation' => [
+
+            ],
+            'middleware' => [],
+            'method' => ['get', 'post'],
+        ],
+        'orders' => [
+            'query' => [
+                App\GraphQL\Queries\OrdersQuery::class
+            ],
+            'mutation' => [
+                
+            ],
+            'middleware' => [],
+            'method' => ['get', 'post'],
+        ],
+        'payment' => [
+            'query' => [
+                App\GraphQL\Queries\PaymentQuery::class
+            ],
+            'mutation' => [
+                App\GraphQL\Mutations\PaymentMutation::class
+            ],
+            'middleware' => [],
+            'method' => ['get', 'post'],
+        ],
+        'payments' => [
+            'query' => [
+                App\GraphQL\Queries\PaymentsQuery::class
+            ],
+            'mutation' => [
+                App\GraphQL\Mutations\PaymentMutation::class
+            ],
+            'middleware' => [],
+            'method' => ['get', 'post'],
+        ],
+        'products' => [
+            'query' => [
+                'product'   => App\GraphQL\Queries\ProductQuery::class,
+                'products'  => App\GraphQL\Queries\ProductsQuery::class,
+            ],
+            'mutation' => [
+                'createProduct' => App\GraphQL\Mutations\Products\CreateProductMutation::class,
+                'deleteProduct' => App\GraphQL\Mutations\Products\DeleteProductMutation::class,
+                'updateProduct' => App\GraphQL\Mutations\Products\UpdateProductMutation::class,
+            ],
+            'middleware' => [],
+            'method' => ['get', 'post', 'put'],
+        ],
+        'shippings'  => [
+            'query' => [
+                App\GraphQL\Queries\ShippingsQuery::class,
+            ],
+            'middleware' => ['auth:api'],
+            'method' => ['get'],
         ],
         'user'  => [
             'query' => [
                 App\GraphQL\Queries\UserQuery::class
             ],
             'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
-                //'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
+                'UpdateUserMutation'    => App\GraphQL\Mutations\UpdateUserMutation::class,
             ],
             'middleware' => [],
             'method' => ['get', 'post'],
         ],
         'users' => [
             'query' => [
-                App\GraphQL\Queries\UsersQuery::class
+                'billings'  => App\GraphQL\Queries\UserBillingsQuery::class,
+                'shippings' => App\GraphQL\Queries\UserShippingsQuery::class,
+                'user'      => App\GraphQL\Queries\UserQuery::class,
+                'users'     => App\GraphQL\Queries\UsersQuery::class,
             ],
             'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
-                //'registerUser' => App\GraphQL\Mutations\RegisterUserMutation::class,
+                'createBilling'     => App\GraphQL\Mutations\Users\CreateUserBillingMutation::class,
+                'createUser'        => App\GraphQL\Mutations\Users\CreateUserMutation::class,
+                'createShipping'    => App\GraphQL\Mutations\Users\CreateUserShippingMutation::class,
+                'deleteBilling'     => App\GraphQL\Mutations\Users\DeleteUserBillingMutation::class,
+                'deleteUser'        => App\GraphQL\Mutations\Users\DeleteUserMutation::class,
+                'deleteShipping'    => App\GraphQL\Mutations\Users\DeleteUserShippingMutation::class,
+                'updateBilling'     => App\GraphQL\Mutations\Users\UpdateUserBillingMutation::class,
+                'updateUser'        => App\GraphQL\Mutations\Users\UpdateUserMutation::class,
+                'updateShipping'    => App\GraphQL\Mutations\Users\UpdateUserShippingMutation::class,
             ],
-            'types' => [
-                'Useralias' => App\GraphQL\Types\UserType::class,
-            ],
-            'middleware' => [],
-            'method' => ['get'],
+            'middleware' => ['auth:api'],
+            'method' => ['get', 'post', 'put'],
         ],
         'verify' => [
             'mutation' => [
@@ -176,12 +246,22 @@ return [
     ], 
     'types' => [
         'AccessToken'   => App\GraphQL\Types\AccessTokenType::class,
-        'Customer'      => App\GraphQL\Types\CustomerType::class,
-        //'Profile'       => App\GraphQl\Types\ProfileType::class,
+        'BillingInput'  => App\GraphQL\InputTypes\BillingInputType::class,
+        'BillingType'   => App\GraphQL\Types\BillingType::class,
+        'Checkout'      => App\GraphQL\Types\CheckoutType::class,
+        'ItemInput'     => App\GraphQL\InputTypes\ItemInputType::class,
+        'Order'         => App\GraphQL\Types\OrderType::class,
+        'OrderItem'     => App\GraphQL\Types\OrderItemType::class,
+        'OrderBilling'  => App\GraphQL\Types\OrderBillingType::class,
+        'OrderShipping' => App\GraphQL\Types\OrderShippingType::class,
+        'Payment'       => App\GraphQL\Types\PaymentType::class,
+        'PaymentInput'  => App\GraphQL\InputTypes\PaymentInputType::class,
+        'ProductType'   => App\GraphQL\Types\ProductType::class,
+        'Profile'       => App\GraphQL\Types\ProfileType::class,
         'Role'          => App\GraphQL\Types\RoleType::class,
-        //'User'          => App\GraphQl\Types\UserType::class,
-        // 'relation_example'  => ExampleRelationType::class,
-        // \Rebing\GraphQL\Support\UploadType::class,
+        'ShippingInput' => App\GraphQL\InputTypes\ShippingInputType::class,
+        'ShippingType'  => App\GraphQL\Types\ShippingType::class,
+        'User'          => App\GraphQL\Types\UserType::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request
