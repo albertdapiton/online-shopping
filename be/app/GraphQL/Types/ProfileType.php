@@ -4,6 +4,7 @@ namespace App\GraphQL\Types;
 
 use App\Models\Profile;
 use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
 class ProfileType extends GraphQLType
@@ -29,14 +30,26 @@ class ProfileType extends GraphQLType
                 'type'          => Type::string(),
                 'description'   => 'The last name of the user',
             ],
+            'nickname'        => [
+                'type'          => Type::string(),
+                'description'   => 'The nickname of the user',
+            ],
             'date_birth'       => [
                 'type'          => Type::string(), 
                 'description'   => 'The date of birth of the user',
             ],
+            'billings'          => [
+                'type'          => Type::listof(GraphQL::type('BillingType')),
+                'description'   => 'List of available billing address',
+            ],
+            'shippings'         => [
+                'type'          => Type::listof(GraphQL::type('ShippingType')),
+                'description'   => 'List of available shipping address',
+            ],
             'country' => [
                 'type'          => Type::string(),
                 'description'   => 'The country of the user',
-            ],
+            ]
         ];
     }
 }

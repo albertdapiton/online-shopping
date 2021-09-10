@@ -6,8 +6,9 @@ use App\Models\Role;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
-class RoleType extends GraphQLType
+class RoleType extends GraphQLType 
 {
+
     protected $attributes = [
         'name'          => 'Role',
         'description'   => 'Role of the user',
@@ -18,14 +19,17 @@ class RoleType extends GraphQLType
     {
         return [
             'id'            => [
-                'type'          => Type::nonNull(Type::string()),
+                'type'          => Type::nonNull(Type::int()),
                 'description'   => 'The id of the role',
-                'alias'         => 'role_id',
             ],
             'name'        => [
                 'type'          => Type::string(),
                 'description'   => 'The name of the role',
             ],
+            'slug'        => [
+                'type'          => Type::string(),
+                'description'   => 'The slug of the role',
+            ]
         ];
     }
 }

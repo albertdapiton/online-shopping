@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomerBillingAddressesTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateCustomerBillingAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_billing_addresses', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('profile_id')
-                ->constrained('profiles')
+            $table->foreignId('order_id')
+                ->constrained('orders')
                 ->onDelete('cascade');
-            $table->string('address_1');
-            $table->string('address_2');
-            $table->string('country');
+            $table->double('amount', 10, 5);
+            $table->string('stripe_payment_id', 100);
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateCustomerBillingAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_billing_addresses');
+        Schema::dropIfExists('payments');
     }
 }

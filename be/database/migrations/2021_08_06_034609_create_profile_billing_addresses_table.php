@@ -1,0 +1,41 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateProfileBillingAddressesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('profile_billing_addresses', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('profile_id')
+                ->constrained('profiles')
+                ->onDelete('cascade');
+            $table->boolean('primary')->default(0);
+            $table->string('address_1');
+            $table->string('address_2');
+            $table->string('state', 100)->nullable();
+            $table->string('province', 100)->nullable();
+            $table->string('city', 100);
+            $table->string('country');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('profile_billing_addresses');
+    }
+}
