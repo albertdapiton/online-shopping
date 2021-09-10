@@ -9,7 +9,7 @@ query LoginUser($email: String, $password: String) {
 }
 
 Retrieve a list of users by role
-URL: URL: /graphql/users?query={query}&variables={variables}
+URL: URL: /graphql/users?query={query}&variables={"roles": {roles}}
 query FetchUsers ($roles: String) {
     users(roles: $roles) {
         id
@@ -26,7 +26,7 @@ query FetchUsers ($roles: String) {
 }
 
 Retrieve a list of user by id
-URL: /graphql/user?query={query}&variables={variables}
+URL: /graphql/user?query={query}&variables={"id":{id}}
 query FetchUser ($id: Int) {
     user(id: $id) {
         id

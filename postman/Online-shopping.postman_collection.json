@@ -1,0 +1,741 @@
+{
+	"info": {
+		"_postman_id": "8697e866-dbe9-4673-a049-42d4477ea9f4",
+		"name": "Online-shopping",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Billing",
+			"item": [
+				{
+					"name": "Billing",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query FetchBillings {\n    billings(limit: 100, page: 1) {\n        data \n        {\n            id\n            primary\n            address_1\n            address_2\n            state\n            province\n            city\n            country\n        }\n        total\n        per_page\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/billings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"billings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Billing By User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query FetchUserBilling {\n    billings(user_id: 7, limit: 100, page: 1) {\n        data \n        {\n            id\n            primary\n            address_1\n            address_2\n            state\n            province\n            city\n            country\n        }\n        total\n        per_page\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Billing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n\tcreateBilling(user_id: 2, primary: 0, address_1: \"Tres de Abril Labangon\", address_2: \"\", state: \"Cebu\", province: \"Cebu\", city: \"Cebu\", country: \"Philippines\") {\n        id\n        primary\n        address_1\n        address_2\n        state\n        province\n        city\n        country\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Billing",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Update Billing",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n\tupdateBilling(id: 4, primary: 1, address_1: \"Tres de Abril Labangon\", address_2: \"\", state: \"Cebu\", province: \"Cebu\", city: \"Cebu\", country: \"Philippines\") {\n        id\n        primary\n        address_1\n        address_2\n        state\n        province\n        city\n        country\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Checkout",
+			"item": [
+				{
+					"name": "Checkout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n\torderItems(items:[{id:1, price:\"10\", quantity:1},{id:2, price:\"20\", quantity:2}]) {\n    id\n    name\n    description\n    price\n    quantity\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/checkout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query FetchOrders {\n    orders(user_id: 1) {\n        id\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Orders",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query FetchProducts {\n    products(limit: 100, page: 1) {\n        data \n        {\n            id\n            name\n            description\n            price\n            qty\n        }\n        total\n        per_page\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n\tcreateProduct(name: \"tv\", description: \"lorem ipsum\", price: \"1200\", qty: 5) {\n        id\n        name\n        description\n        price\n        qty\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query FetchProduct {\n    product(id: 2) {\n        id\n        name\n        description\n        price\n        qty\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n\tupdateProduct(id: 1, name: \"\", description: \"\", price: \"\", qty: \"\") {\n        id\n        name\n        description\n        price\n        qty\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shipping",
+			"item": [
+				{
+					"name": "Shippings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query FetchShippings {\n    shippings(limit: 100, page: 1) {\n        data \n        {\n            id\n            primary\n            address_1\n            address_2\n            state\n            province\n            city\n            country\n        }\n        total\n        per_page\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/shippings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"shippings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shippings By User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query FetchUserShipping {\n    shippings(user_id: 7, limit: 100, page: 1) {\n        data \n        {\n            id\n            primary\n            address_1\n            address_2\n            state\n            province\n            city\n            country\n        }\n        total\n        per_page\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Shipping",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n\tcreateShipping(user_id: 2, primary: 0, address_1: \"Tres de Abril Labangon\", address_2: \"\", state: \"Cebu\", province: \"Cebu\", city: \"Cebu\", country: \"Philippines\") {\n        id\n        primary\n        address_1\n        address_2\n        state\n        province\n        city\n        country\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Shipping",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Update Shipping",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n\tupdateBilling(id: 1, primary: 1, address_1: \"unit-4 Sykrise Bld IT Park\", address_2: \"\", state: \"Cebu\", province: \"Cebu\", city: \"Cebu\", country: \"Philippines\") {\n        id\n        primary\n        address_1\n        address_2\n        state\n        province\n        city\n        country\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query FetchUsers {\n    users(limit: 100, page: 1, role: \"customer\") {\n        data \n        {\n            id\n            email\n            profile {\n                first_name\n                last_name\n                nickname\n                date_birth\n                billings {\n                    address_1\n                    address_2\n                    state\n                    province\n                    city\n                    country\n                }\n                shippings {\n                    address_1\n                    address_2\n                    state\n                    province\n                    city\n                    country\n                }\n            }\n            roles {\n                name\n            }\n        }\n        total\n        per_page\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n\tcreateUser(first_name: \"Albert\", last_name: \"Dapiton\", nickname: \"dapz\", email: \"dapz2@test.test\", password: \"12345\", date_birth: \"1978-12-05\", country: \"Philippines\") {\n    email\n    profile {\n        first_name\n        last_name\n        nickname\n        date_birth\n        country\n    }\n    roles {\n        name\n    }\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query FetchUsers {\n    user(id: 7) {\n        id\n        email\n    \tprofile {\n      \t\tfirst_name\n      \t\tlast_name\n            nickname\n            date_birth\n            billings {\n                address_1\n                address_2\n                state\n                province\n                city\n                country\n            }\n            shippings {\n                address_1\n                address_2\n                state\n                province\n                city\n                country\n            }\n    \t}\n    \troles {\n            name\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n\tupdateUser(id: 7, first_name: \"Alberto\", last_name: \"Romulo\", nickname: \"dapz\", password: \"12345\", date_birth: \"1978-12-05\", country: \"Philippines\") {\n    email\n    profile {\n        first_name\n        last_name\n        nickname\n        date_birth\n        country\n    }\n    roles {\n        name\n    }\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost/graphql/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"graphql",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "Tv2tjVRbe9gnpFJV1WF4eLc1AYiDefcim8GOFbsN",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "albert_dapiton@cody.inc",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "def5020083c49f9ed58f4add017b2a60f9570dcb515e8f1aaedef38a0631ebe76a67b4c80716ce519e1042e1e46e5aaed4de0e164eb1342abad43b2fdda34da0f3ac6fe270e55e91578e1377161db52f32976cf2ede62a1d534d4f33a2bbeaabe14c307364399109e4bc96c1af591bc4020752aa80a2c6286cc9aac8c9f6e9d24cc3f6cf3053178512d95a7ca047f170f20074f0c62c0b5ecdc6277e4e6242e5ed00ecbf4e5fecaa904ecc6ed188b1ca5d9b62acbdb381fb6a5fb3da52e2c757424733b53516253eab3efb7e318cd9e58dc276219f2f6f92e80619e262884b940c458c841225d84b98c144a34889a6654bc4713b37a93a6ca2b849c57f62953f53a4213259d78df8ed61752d83e11ea8cc7764f3bf85c226a6649e05f223b7c282510497efd2c6ed90e128178073842b96cbccf6626aa2c48a6f55ac69eee275360eff77ba90af8a0bfcddc5381df6a30ef09290c86829f26b4f901323cb280e49",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "Tv2tjVRbe9gnpFJV1WF4eLc1AYiDefcim8GOFbsN",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjg5YTE3NGYzZjYwZDE2MzZlNmQyY2M0NTc0NDJmMzkyZjEzZTlhNWU2NGExM2ExOTg0MTJmNjVlZmQxNTUyZGViYjRjMjNjYjMzYTJlZjYiLCJpYXQiOjE2MzA3MjY3NTYsIm5iZiI6MTYzMDcyNjc1NiwiZXhwIjoxNjMyMDIyNzU2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.k-ly5-9AveeA4d43Ax6JXUq6HzUrWur8ZHhpjjzL0iUXwq6mseJ0DEqJuNA_iEwEwQ6hGdGpIhudYtgDwBgLFl3bx7Kh9Qasu0lF3eYor06qYY3eIW5cT1iE-BSCFKZ4DCUVPhl3kcT2YbULCLDMm3Mg46v4wXn1N2CPD4dANQDzYQnAloIvRd-hhXnI6gHpvRB2TdxjaWfPCB2f9NtULXYNGuNrVPM1vt9ZNAi3xeZFTSrKC8n3_6_pa3BWQIwjd7D1pKiGwB9N12AZBxbBjmVmsi2qr3laxkdAc4QpGvlzDcB9aUI64E0j9p_Zb1jbGcrmllJY3uEz3COU_CCNoyNlYHI69wf8deg3jT5BwTQzEou5qf5mnWoB8aMJU49HAlVZJk_PdlVlDFdY-8tp2LePp5Gtqjk2udX73LJVjVV6E7Cy6sWhiNQeUWy__v-eI89nHcCKO983ir4ehH4LY_7rcaQKt0xM6zvbKx_KM2YZVWkEIsWhYjugLZrLcW1BDxht_ahmQS-_gsjTaM4CiKSjcdemyTWiafCowivDc_kp3VZGIRIj_t8BIswzVYx6ynnnVgZTSf74UCeNOAtz_J3ndLGI6VpP8Rq1MYC1pPLoNm5C_1fC_gz6RCSpI-zbKrCfhNoE9YSjyWhyu1hSJKVniA5s-9AAzwBDbLRtWFY",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "client_id",
+			"value": "1"
+		},
+		{
+			"key": "client_secret",
+			"value": "Tv2tjVRbe9gnpFJV1WF4eLc1AYiDefcim8GOFbsN"
+		}
+	]
+}

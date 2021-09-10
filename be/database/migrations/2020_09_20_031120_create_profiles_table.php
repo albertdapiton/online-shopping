@@ -20,7 +20,8 @@ class CreateProfilesTable extends Migration
                 ->onDelete('cascade');
             $table->string('first_name');
             $table->string('last_name');
-            $table->date('date_birth');
+            $table->string('nickname')->nullable();
+            $table->date('date_birth')->nullable();
             $table->string('country');
             $table->timestamps();
         });
