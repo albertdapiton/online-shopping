@@ -107,4 +107,17 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Emails
+    |--------------------------------------------------------------------------
+    |
+    | This email is use on email notification to the users
+    |
+    */
+
+    'email' => env('MAIL_FROM_ADDRESS', 'test@test.com'),
+
+    'email_noreply' => env('MAIL_FROM_NOREPLY', 'no-reply@test.com'),
+
 ];

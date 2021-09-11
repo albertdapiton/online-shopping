@@ -13,4 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'HomeController@index');
-Route::get('email/verify', 'HomeController@index')->name('verification.verify');
+Route::get('user/verified', 'Auth\VerificationController@verified')->name('user.verified');
+Route::get('user/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')
+    ->name('user.verification.verify');
