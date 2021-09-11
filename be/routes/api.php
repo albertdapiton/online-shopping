@@ -14,4 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', 'API\UserController@getUser');
+#Route::middleware('auth:api')->get('/user', 'API\UserController@getUser');
+
+Route::group([
+    'namespace' => 'API',
+], function () {
+    Auth::routes(['verify' => true]);
+
+    Route::group([
+        'prefix' => 'user'
+    ], function() {
+        Route::get('verify', function() {
+            return false;
+        })->name('user.verify');
+    });
+});
