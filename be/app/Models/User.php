@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use App\Notifications\VerifyUserEmailGraphQL;
+use App\Notifications\VerifyUserEmailNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, SoftDeletes;
     
     /**
      * The attributes that are mass assignable.
@@ -46,12 +47,27 @@ class User extends Authenticatable
      */
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new VerifyUserEmailGraphQL);
+        $this->notify(new VerifyUserEmailNotification);
     }
 
+    /**
+     * Get access token
+     * 
+     * return mixed
+     */
     public function getAccessTokenAttribute()
     {
         return $this->tokens()->where('expires_at', '>', now())->first() ?? null;
+    }
+
+    /**
+     * Get email is verified
+     * 
+     * return boolean
+     */
+    public function getVerifiedAttribute() : bool
+    {
+        return $this->hasVerifiedEmail();
     }
 
     /**

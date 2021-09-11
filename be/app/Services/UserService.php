@@ -36,6 +36,17 @@ final class UserService extends BaseService
         return $this->model::find($ids)->get()->delete();
     }
 
+    public function checkExistingUser(string $email, bool $isDeleted = false)
+    {
+        if ($isDeleted) {
+            $user = $this->model::withTrashed()->where('email', $email);
+        } else {
+            $user = $this->model::where('email', $email);
+        }
+
+        return $user->first();
+    }
+
     public function createUser($params) : User
     {
         $user = $this->model::create([
